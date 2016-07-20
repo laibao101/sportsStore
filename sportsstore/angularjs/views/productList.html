@@ -23,7 +23,7 @@
             <!--这里经过两次过滤，最后返回的是一个总的页数-->
             <!--page最后接收到的是一个包含页数的数组，目前是两页，然后输出用$index+1-->
             <a href="#" ng-repeat="page in data.products | filter:categoryFilterFn | pageCount:pageSize " ng-click="selectPage($index+1)"
-                ng-class="getPageclass($index+1)" class="btn btn-default">{{$index+1}}</a>
+                ng-class="getPageClass($index+1)" class="btn btn-default">{{$index+1}}</a>
         </div>
     </div>
 </div>

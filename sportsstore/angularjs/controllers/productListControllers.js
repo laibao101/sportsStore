@@ -21,7 +21,7 @@ angular.module("sportsStore")
         $scope.selectedPage=newPage;
     }
 
-    $scope.getPageClass=function (page) {     //获取当前页数
+    $scope.getPageClass=function (page) {     //获取当前页数,并且将当前页添加一个类名
         return $scope.selectedPage==page? productListActiveClass : "";
     }
 
