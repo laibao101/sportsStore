@@ -1,0 +1,29 @@
+<div class="panel panel-default row" ng-controller="productListCtrl" ng-hide="data.error">
+    <div class="col-xs-3">
+        <a href="#" class="btn btn-block btn-default btn-lg" ng-click="selectCategory()">Home</a>
+        <a href="#" ng-repeat="item in data.products | orderBy:'category' | unique:'category' " ng-click="selectCategory(item)" ng-class="getCategoryClass(item)"
+            class="btn btn-default btn-lg btn-block">{{item}}</a>
+    </div>
+    <div class="col-xs-8">
+        <div class="well" ng-repeat="item in data.products | filter:categoryFilterFn |range:selectedPage:pageSize ">
+            <!--这里初始化第一页最多只会显示三个，因为定义的pageSize为3，在range里面过滤了，只显示三个-->
+            <h3>
+                <strong>{{item.name}}</strong>
+                <span class="pull-right label label-primary">
+                       {{item.price | currency}}
+                </span>
+            </h3>
+            <!--传进去一个对象-->
+            <button class="btn btn-success pull-right " ng-click="addProductToCart(item)">
+                Add to cart
+            </button>
+            <span class="lead">{{item.description}}</span>
+        </div>
+        <div class="pull-right btn-group">
+            <!--这里经过两次过滤，最后返回的是一个总的页数-->
+            <!--page最后接收到的是一个包含页数的数组，目前是两页，然后输出用$index+1-->
+            <a href="#" ng-repeat="page in data.products | filter:categoryFilterFn | pageCount:pageSize " ng-click="selectPage($index+1)"
+                ng-class="getPageclass($index+1)" class="btn btn-default">{{$index+1}}</a>
+        </div>
+    </div>
+</div>
