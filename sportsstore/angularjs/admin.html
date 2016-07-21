@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="bootstrap-theme.css">
     <script src="ngmodules/angular-route.js"></script>
+    <script src="ngmodules/angular-resource.js"></script>
     
     <script>
-        angular.module("sportsStoreAdmin",["ngRoute"])
+        angular.module("sportsStoreAdmin",["ngRoute",'ngResource'])
         .config(function($routeProvider){
             $routeProvider.when("/login",{
                 templateUrl:"/views/adminLogin.html"
@@ -25,6 +26,7 @@
         
     </script>
     <script src="controllers/adminControllers.js"></script>
+    <script src="controllers/adminProductsController.js"></script>
     
 </head>
 

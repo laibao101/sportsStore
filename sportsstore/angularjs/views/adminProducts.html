@@ -1,3 +1,58 @@
-<div class="well">
-    This is the product view
+<style>
+    #productTable{ width:auto; }
+    #productTable td{ max-width:150px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap; }
+    #productTable td input{ max-width:125px; }
+</style>
+
+<div ng-controller="productCtrl">
+    <table id=productTable class="table table-striped table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+        <!--editedProduct.id是填写好后在点击创建的时候自动生成的，如果生成的id和现有的id相同，就会隐藏当前项-->
+        <tr ng-repeat="item in products" ng-hide="item.id==editedProduct.id">
+            <td>{{item.name}}</td>
+            <td class="description">{{item.description}}</td>
+            <td>{{item.category}}</td>
+            <td>{{item.price | currency}}</td>
+            <td>
+                <button class="btn btn-xs btn-primary" ng-click="startEdit(item)">
+                    Edit
+                </button>
+                <button class="btn btn-xs btn-primary" ng-click="deleteProduct(item)">
+                    Delete
+                </button>
+            </td>
+        </tr>
+
+        <tr ng-class="{danger:editedProduct}">
+            <td>
+                <input type="text" ng-model="editedProduct.name"  required>
+            </td>
+            <td>
+                <input type="text" ng-model="editedProduct.description"  required>
+            </td>
+            <td>
+                <input type="text" ng-model="editedProduct.category"  required>
+            </td>
+            <td>
+                <input type="text" ng-model="editedProduct.price"  ng-change="a(editedProduct)" required>
+            </td>
+            <td>
+                <button class="btn btn-xs btn-primary" ng-hide="editedProduct.id" ng-click="createProduct(editedProduct)">
+                    Create
+                </button>
+                <button class="btn btn-xs btn-primary" ng-show="editedProduct.id" ng-click="updateProduct(editedProduct)">
+                    Save
+                </button>
+                <button class="btn btn-xs btn-primary" ng-show="editedProduct.id" ng-click="cancelEdit(editedProduct)">
+                    Cancel
+                </button>
+            </td>
+        </tr>
+    </table>
 </div>

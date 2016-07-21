@@ -1,8 +1,10 @@
 <div ng-controller="mainCtrl" class="panel panel-default row">
     <div class="col-xs-3 panel-body">
-        <a href="#" ng-repeat="item in screens" class="btn btn-default btn-block" ng-class="{ 'btn-primary':item == current }" ng-click="setScreen($index)">{{item}}</a>
+        <!--这里a不能加href属性，否则会导致页面跳转到login页面,通过setScreen来传递需要页面的索引值，在controller里面已经定义好了-->
+        <a  ng-repeat="item in screens" class="btn btn-default btn-block" ng-class="{'btn-primary':item == current}" ng-click="setScreen($index)">{{item}}</a>
     </div>
-    <div class="col-cs-8 panel-body">
+    <div class="col-xs-8 panel-body">
+        <!--加载出controller里面已经定义好的路径，显示页面-->
         <div ng-include="getScreen()"></div>
     </div>
 </div>
